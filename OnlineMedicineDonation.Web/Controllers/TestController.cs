@@ -7,7 +7,7 @@ using OnlineMedicineDonation.Services;
 
 namespace OnlineMedicineDonation.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ExceptionLog]
     [Route("api/[controller]")]
     [ApiController]
