@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineMedicineDonation.Filter;
-using OnlineMedicineDonation.Model.APIModel;
+using OnlineMedicineDonation.Model.Models;
+//using OnlineMedicineDonation.Model.APIModel;
 using OnlineMedicineDonation.Services;
 
 namespace OnlineMedicineDonation.Web.Controllers
@@ -18,7 +19,7 @@ namespace OnlineMedicineDonation.Web.Controllers
         {
             return Ok(new { status = true, response = "hello" });
         }
-       
 
+        
     }
 }

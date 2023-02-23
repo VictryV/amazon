@@ -1,8 +1,9 @@
-﻿using OnlineMedicineDonation.Model.APIModel;
+﻿//using OnlineMedicineDonation.Model.APIModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineMedicineDonation.Filter;
+using OnlineMedicineDonation.Model.Models;
 using OnlineMedicineDonation.Services;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -21,11 +22,11 @@ namespace OnlineMedicineDonation.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] UserCredential userCredential)
-        {           
+        public IActionResult Post([FromBody] EmployeeModel ObjEmployee)
+        {
             try
             {
-                var token = customAuthenticationManager.Authenticate(userCredential.Username, userCredential.Password);
+                var token = customAuthenticationManager.Authenticate(ObjEmployee.EmpName, ObjEmployee.EmpContact);
                 if (token == null)
                     return Unauthorized();
                 return Ok(new { status = true, response = token });

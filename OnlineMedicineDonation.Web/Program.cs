@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
 using System.Text;
+using OnlineMedicineDonation.Data;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -12,11 +14,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMvcCore().AddApiExplorer();
 builder.Services.AddControllersWithViews();
 
-//string connectionString = builder.Configuration.GetConnectionString("CRMI");
-//builder.Services.AddDbContext<ApplicationDbContext>(
-//                  options => options.UseSqlServer(connectionString)
-//              );
+string connectionString = builder.Configuration.GetConnectionString("ConnStringApiData");
+builder.Services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(connectionString));
 
+
+//(options =>options.UseSqlServer("ApiTestData"));
 
 builder.Services.AddCors(c =>
 {
@@ -46,6 +48,7 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
+
 
 builder.Services.AddSingleton<ICustomAuthenticationManager>(new JWTAuthenticationManager(tokenKey));
 
